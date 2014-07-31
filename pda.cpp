@@ -51,6 +51,7 @@ int main(int argc, char** argv)
       mother[i].alive = true;
     }
   double time0=omp_get_wtime();
+  printf ("\nthread_count     machince_time(s) cell_time      mRNA_level       protein_level \n");
   for (double checkpoint = simulation_interval;
        checkpoint < simulation_end; checkpoint += simulation_interval)
     {				// step through checkpoints to the end of simulation
@@ -81,21 +82,30 @@ int main(int argc, char** argv)
 		  daughter[l].alive = false;
 		}
 	    }
-	  cout << "all cells passed checkpoint: " << checkpoint << endl;
+	  double time1=omp_get_wtime();
+	  double total_mRNA_count = 0;
+	  double total_protein_count = 0;
+	  for (int i=0; i < cell_count-1; ++i)
+	    {
+	      total_mRNA_count+= mother[i].mRNA_count;
+	      total_protein_count+= mother[i].protein_count;
+	    }
+	  printf ("%-16d %-16f %-16d %-16d %-16d \n", thread_count_granted,
+		  time1-time0, (int)checkpoint, (int)total_mRNA_count, (int)total_protein_count);
 	}
       }
     }
-  double time1=omp_get_wtime();
-  double total_mRNA_count;
-  double total_protein_count;
-  for (int i=0; i <= cell_count-1; ++i)
-    {
-      total_mRNA_count+= mother[i].mRNA_count;
-      total_protein_count+= mother[i].protein_count;
-    }
-  printf ("\nthread_count     run_time(s)      mRNA_level       protein_level \n");
-  printf ("%-16d %-16f %-16d %-16d \n", thread_count_granted,
-	   time1-time0, (int)total_mRNA_count, (int)total_protein_count);
+  // double time1=omp_get_wtime();
+  // double total_mRNA_count = 0;
+  // double total_protein_count = 0;
+  // for (int i=0; i < cell_count-1; ++i)
+  //   {
+  //     total_mRNA_count+= mother[i].mRNA_count;
+  //     total_protein_count+= mother[i].protein_count;
+  //   }
+  // printf ("\nthread_count     machince_time(s) cell_time      mRNA_level       protein_level \n");
+  // printf ("%-16d %-16f %-16f %-16d %-16d \n", thread_count_granted,
+  // 	  time1-time0, checkpoint, (int)total_mRNA_count, (int)total_protein_count);
   // fprintf (stats, "%-16d %-16f %-16d %-16d \n", thread_count_granted,
   // 	   time1-time0, (int)total_mRNA_count, (int)total_protein_count);
   // fclose (stats);

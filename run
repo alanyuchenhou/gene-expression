@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 set -e
 make
-time ./gepda.out 8
+for thread_count in 1 2 4 8
+do
+    time ./gepda.out ${thread_count}
+done
