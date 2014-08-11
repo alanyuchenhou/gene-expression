@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
+> gepda.sc2.tsv
 make
-for thread_count in 1 2 4 8
+for thread_count in 1 2 4 8 16
 do
-    time ./gepda.out ${thread_count}
+    time ./gepda.out ${thread_count} >> gepda.sc2.tsv
 done

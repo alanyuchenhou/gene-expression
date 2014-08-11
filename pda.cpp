@@ -51,7 +51,8 @@ int main(int argc, char** argv)
       mother[i].alive = true;
     }
   double time0=omp_get_wtime();
-  printf ("\nthread_count     machince_time(s) cell_time      mRNA_level       protein_level \n");
+  printf ("    thread_count machince_time(s)        cell_time\
+       mRNA_level    protein_level\n");
   for (double checkpoint = simulation_interval;
        checkpoint < simulation_end; checkpoint += simulation_interval)
     {				// step through checkpoints to the end of simulation
@@ -90,7 +91,7 @@ int main(int argc, char** argv)
 	      total_mRNA_count+= mother[i].mRNA_count;
 	      total_protein_count+= mother[i].protein_count;
 	    }
-	  printf ("%-16d %-16f %-16d %-16d %-16d \n", thread_count_granted,
+	  printf ("%16d %16f %16d %16d %16d \n", thread_count_granted,
 		  time1-time0, (int)checkpoint, (int)total_mRNA_count, (int)total_protein_count);
 	}
       }
