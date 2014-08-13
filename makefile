@@ -10,10 +10,10 @@ rngstream.o: rngstream.h omprng.h
 .PHONY: clean
 clean:
 	rm *.out *.o
+# ldflags: loader flags
 # -O3: optimize level 3
 # -g3: debug level 3
 # -c: compile the source file into a object file only (no link)
-# ldflags: library loader dynamic flags
 # -lm: link library math
 # -o: output
 # -Wall: warning all
