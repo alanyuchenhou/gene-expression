@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 set -e
-export OMP_PROC_BIND=true # processors binding with threads, deactivating thread migration; use with care
+export OMP_PROC_BIND=true # processor binding activated; use with care
 > gepda.sc2.tsv
 make -j
 for thread_count in 1 2 4 8 16
 do
+    export GOMP_CPU_AFFINITY=0-${thread_count} # threads bound to cpus
     export OMP_NUM_THREADS=${thread_count}
     time ./gepda.out ${thread_count} >> gepda.sc2.tsv
 done
