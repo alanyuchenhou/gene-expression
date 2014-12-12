@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{charlebois2011algorithm}
+Daniel~A Charlebois, Jukka Intosalmi, Dawn Fraser, and Mads K{\ae}rn.
+\newblock An algorithm for the stochastic simulation of gene expression and
+  heterogeneous population dynamics.
+\newblock {\em arXiv preprint arXiv:1110.6469}, 2011.
+
+\bibitem{gillespie1977exact}
+Daniel~T Gillespie.
+\newblock Exact stochastic simulation of coupled chemical reactions.
+\newblock {\em The journal of physical chemistry}, 81(25):2340--2361, 1977.
+
+\bibitem{gillespie2001approximate}
+Daniel~T Gillespie.
+\newblock Approximate accelerated stochastic simulation of chemically reacting
+  systems.
+\newblock {\em The Journal of Chemical Physics}, 115(4):1716--1733, 2001.
+
+\bibitem{gillespie2007stochastic}
+Daniel~T Gillespie.
+\newblock Stochastic simulation of chemical kinetics.
+\newblock {\em Annu. Rev. Phys. Chem.}, 58:35--55, 2007.
+
+\bibitem{komarov2012accelerating}
+Ivan Komarov, Roshan~M D’Souza, and Jose-Juan Tapia.
+\newblock Accelerating the gillespie $\tau$-leaping method using graphics
+  processing units.
+\newblock {\em PloS one}, 7(6):e37370, 2012.
+
+\bibitem{sanft2011stochkit2}
+Kevin~R Sanft, Sheng Wu, Min Roh, Jin Fu, Rone~Kwei Lim, and Linda~R Petzold.
+\newblock Stochkit2: software for discrete stochastic simulation of biochemical
+  systems with events.
+\newblock {\em Bioinformatics}, 27(17):2457--2458, 2011.
+
+\end{thebibliography}

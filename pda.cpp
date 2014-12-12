@@ -42,6 +42,7 @@ int main(int argc, char** argv)
   int const cell_count = 1000;
   double const simulation_end = 10000;
   double const simulation_interval = 3300;
+  double communication_time = 0;
   int thread_count_granted;
   cell mother[cell_count]; 
   cell daughter[cell_count];
@@ -51,7 +52,7 @@ int main(int argc, char** argv)
       mother[i].alive = true;
     }
   double time0 = omp_get_wtime();
-  printf ("    thread_count machince_time(s)        cell_time\
+  printf ("    thread_count     total_time(s) communication_time(s)      cell_time\
        mRNA_level    protein_level\n");
   for (double checkpoint = simulation_interval;
        checkpoint < simulation_end; checkpoint += simulation_interval)
@@ -74,6 +75,7 @@ int main(int argc, char** argv)
 #pragma omp single
 	{
 	  thread_count_granted = omp_get_num_threads();
+	  double time2 = omp_get_wtime();
 	  for (int l = 0; l < cell_count; ++l)	// constant-number Monte Carlo Method
 	    {
 	      if (daughter[l].alive) // every daughter replace a mother randomly
@@ -91,8 +93,10 @@ int main(int argc, char** argv)
 	      total_mRNA_count += mother[i].mRNA_count;
 	      total_protein_count += mother[i].protein_count;
 	    }
-	  printf ("%16d %16f %16d %16d %16d \n", thread_count_granted,
-		  time1-time0, (int)checkpoint, (int)total_mRNA_count, (int)total_protein_count);
+	  double time3 = omp_get_wtime();
+	  communication_time += (time3-time2);
+	  printf ("%16d %16f %16f %16d %16d %16d \n", thread_count_granted,
+		  time1-time0, communication_time, (int)checkpoint, (int)total_mRNA_count, (int)total_protein_count);
 	}
       }
     }

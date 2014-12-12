@@ -1,20 +1,20 @@
-    thread_count machince_time(s)        cell_time       mRNA_level    protein_level
-               1         1.015289             3300             5929           912233 
-               1         2.878302             6600             5917          1259826 
-               1         4.504640             9900             6097          1366844 
-    thread_count machince_time(s)        cell_time       mRNA_level    protein_level
-               2         0.479956             3300             5968           911566 
-               2         1.385525             6600             5880          1261256 
-               2         2.251785             9900             5988          1366972 
-    thread_count machince_time(s)        cell_time       mRNA_level    protein_level
-               4         0.386110             3300             6138           907791 
-               4         1.012025             6600             5947          1258034 
-               4         1.655635             9900             5972          1366184 
-    thread_count machince_time(s)        cell_time       mRNA_level    protein_level
-               8         0.262742             3300             6159           910517 
-               8         0.713384             6600             5979          1260057 
-               8         1.145876             9900             5977          1368133 
-    thread_count machince_time(s)        cell_time       mRNA_level    protein_level
-              16         0.166036             3300             6131           907983 
-              16         0.450934             6600             6008          1260469 
-              16         0.747331             9900             6040          1366091 
+    thread_count     total_time(s) communication_time(s)      cell_time       mRNA_level    protein_level
+               1         0.779065         0.000007             3300             5912           911970 
+               1         2.289967         0.000086             6600             6155          1256306 
+               1         3.744367         0.000165             9900             6127          1371136 
+    thread_count     total_time(s) communication_time(s)      cell_time       mRNA_level    protein_level
+               2         0.439365         0.000008             3300             6041           911393 
+               2         1.292942         0.000088             6600             6008          1259975 
+               2         2.126997         0.000166             9900             5951          1365823 
+    thread_count     total_time(s) communication_time(s)      cell_time       mRNA_level    protein_level
+               4         0.228765         0.000008             3300             6082           909768 
+               4         0.675832         0.000092             6600             6007          1259347 
+               4         1.106145         0.000175             9900             5993          1370414 
+    thread_count     total_time(s) communication_time(s)      cell_time       mRNA_level    protein_level
+               8         0.116607         0.000011             3300             5955           910688 
+               8         0.340446         0.000096             6600             6038          1256204 
+               8         0.555039         0.000183             9900             5860          1366473 
+    thread_count     total_time(s) communication_time(s)      cell_time       mRNA_level    protein_level
+              16         0.115533         0.000026             3300             6001           909780 
+              16         0.340596         0.000115             6600             5959          1256914 
+              16         0.553889         0.000451             9900             5956          1366013 

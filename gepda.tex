@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{cite}
+\begin{document}
+\title{Gene expression in a space and time variant environment}
+\author{Yuchen Hou}
+\maketitle
+
+\section{Background and motivation}
+This project is a follow-up to Charlebois' earlier work on stochastic simulation algorithm (SSA) of gene expression(including translation(DNA producing mRNA), transcription(mRNA producing protein), mRNA decay and protein decay) in a cell colony \cite{charlebois2011algorithm}. Gillespie formulated the SSA in 1977 as an exact procedure for numerically simulating the evolution of a chemical system \cite{gillespie1977exact}. Since then SSA has evolved and become a popular method for chemical kinetics \cite{gillespie2007stochastic, gillespie2001approximate}. There are efforts exploiting data level parallelism in the simulation to improve simulation performance. For example, Komarov demonstrated how to improve the performance with GPU implementation \cite {komarov2012accelerating}. There are also research in performance gain through thread level parallelism from Sanft \cite{sanft2011stochkit2}.
+
+\section{Task and formulation}
+In Charlebois's work, the cell colony resides in a space and time invariant ideal environment. All the reactions in one cell do not interfere the reactions in any other cells. In my proposed project, the environment is not ideal: the chemical condition differs from point to point, from time to time. This is the case in real environment, as cells move around and exchange materials with the environment, introducing more computation and also more communication into the task. The task is described by the following system conditions:
+\begin{description}
+  \item[Simulation time] Desired biological system evolution time period in the real world scenario (e.g. 1 day, 1 month or 1 year).
+  \item[Simulation cycle] The simulation time is a continuous variable and the cell environment changes throughout time(due to continuous cell movement and continuous nutrient fluctuation in the environment). The simulation of this continuous environment is not feasible for any digital computer, so the simulation time period is divided into a large number of short simulation cycles. In each simulation cycle, the environment and cell locations are considered invariant.
+  \item[Cell condition] The total number of cells and internal biological condition(the level of all materials) of every cell.
+  \item[Cell distribution] The locations of every cell.
+  \item[Environment] The material density distribution in the environment.
+\end{description}
+The objective of the task is to acquire the system evolution information: a sequence of system snapshots, each snapshot records cell conditions distributions and environment condition. The first snapshot is the input of the simulation, initialized by the user, the subsequent snapshots are the output of the simulation
+
+\section{Approach}
+The simulation for the reactions in a single cell is carried out in serial, as every reaction modifies the materials inside a cell and hence effect all subsequent reactions. 
+
+\subsection{Data structure}
+The data structure is described below:
+\begin{description}
+  \item[Cell] The cell is a customized data type, it contains several data members: nutrients level, proteins level, mRNA level, DNA level, volume, age, and so on.
+  \item[Cell map] The cell map is implemented using a binary search tree. It records the location of every cell (mapping a pointer to a cell to the coordinates of the cell). Intuitively, the locations of cells can be read from this map.
+  \item[Environment] The real environment(say, a large cube with materials) is spatially continuous, and needs to be discretized into finite number of small units(say, small cubes). The material level inside each cube can be viewed as spatially invariant. In this way, the environment can be implemented using a 3D array. Each element in the 3D array is a array recording the levels of all different nutrients.
+\end{description}
+
+\subsection{Simulation procedure}
+The simulation is decomposed into a finite number of simulation cycles and the program simulates these cycles in serial. During every simulation cycle, the following routines are carried out in parallel:
+\begin{enumerate}
+  \item Every cell updates its contents to simulate cell grow, by carrying out all the chemical reactions within itself using SSA, and exchanging materials with its environment.
+  \item The cell map updates the coordinates of each cell to simulate the movements of cells. The movements of the cells should be Markov processes.
+  \item The environment updates its material distribution to simulation the environment changes, taking into account the material exchange from every cell at the corresponding location, and also following laws of gradient based material transport inside the environment.
+\end{enumerate}
+\section{Implementation}
+I have considered both OpenMP and MPI to implement this simulation. They have their own advantages.
+\subsection{OpenMP}
+Based on the experience of previous research, the data set is small enough (at the order of GB) to fit into the memory of a single machine. Also, fast application development and programming simplicity is desirable for this research in biological system simulation. These 2 points make OpenMP a good choice. The cell updates, cell map updates and environment updates within each simulation cycle can all be implemented by omp parallel for loops. The workload can be statically or dynamically distributed to threads.
+\subsection{MPI}
+MPI has good scalability. If the system we want to simulator grows much larger (say data set grows to the order of TB), we will need to divide the workload into multiple process on multiple machines (instead of multiple thread on one machine). In this case, we can use MPI to distribute the workload. We can either divide the whole system into a array of regions statically, if the distribution of cell in the environment is even, or into nodes using a quadtree dynamically when the distribution is not even.
+
+%% \subsection{Family oriented}
+%% In this approach, the whole set of cells are divided into several disjoint sets called families. The evolution of each family is taken care of by one thread. No matter where each member of the family goes, the same thread always keeps track of it. This is an intuitive approach, inspired by closer genetic relations withn a family. This approach natually fits the idea that every child cell is a clone of its parent cell and hence a family is somewhat constant, having a stable and limited gene pool so that their gene expression should be easier to deal with. In other words, the asexual production of cells ensures that the migration of cells do not cause much variance in the family.
+
+%% \subsection{Colony oriented}
+%% The other approach is just the opposite. The community is devided into several spatially disjoint areas called colonies. Each thread is responsible for the evolution and population dynamics of one colony. There will always be immigrants and emigrants so the colonies are dynamic, but the same thread always focus on all the cells in its colony. This approach is more promissing than the previous one, because the divisions are spatially close and exchange of environmental materials and cells are easier to keep track of. Every colony only record the material flow and cell flow at its borders with neighbor colonies, so every thread also only communicates with a limited number of neighbor threads. As a comparison, the family oriented approach requires every thread communicate with many other thread as its family members migrate all over places and the environment becomes hard to divide to fit this senario.
+
+%% \section{Challenges}
+%% The chllenges in this project include modeling of the followings processes.
+%% \subsection{Material exchange between a cell and its environment}
+%% Every thread needs to keep track of the material level at every point in its colony, the individual cells and their locations. Discretize space and time is a plausible method to for the continuous problem setting.
+%% \subsection{Cell exchange between adjacent colonies}
+%% Every colony needs to keep track of emigrant and immigrant cells at the border with neighbor colonies. A cell might be an big object if there are large amount of chemical materials and reactions under consideration.
+
+
+\bibliographystyle{plain}
+\bibliography{biology}
+\end{document}
