@@ -1,7 +1,7 @@
 gepda
 =====
 
-gene expression and population dynamics algorithm
+This project is a multi-thread simulator built upon Charlebois' earlier work on stochastic simulation algorithm (SSA) of gene expression(including translation(DNA producing mRNA), transcription(mRNA producing protein), mRNA decay and protein decay) in a cell colony. Gillespie formulated the SSA in 1977 as an exact procedure for numerically simulating the evolution of a chemical system. Since then SSA has evolved and become a popular method for chemical kinetics. There are efforts exploiting data level parallelism in the simulation to improve simulation performance. For example, Komarov demonstrated how to improve the performance with GPU implementation. There are also research in performance gain through thread level parallelism from Sanft.
 
 system requirement
 ----
