@@ -40,10 +40,12 @@ Usage
 
 - edit file `run` to specify how many threads the program shall request from the OS;
 - run the simulation and check the result::
+
  ./run
 
 - edit file `profile` to specify the profiling results file
 - profile the simulation to optimize the simulation::
+
  ./profile
 
 Authors
