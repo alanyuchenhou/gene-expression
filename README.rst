@@ -10,17 +10,17 @@ gene-expression is a C++ program for biomedical simulation for gene expression a
 Features
 ----
 Here are just a few of the things gene-expression does:
-* Object oriented design emphasizing individual cells
-* Cell growth model incorporating stochastic simulation for cell age, size and compound levels
-* Constant number Monte Calo method for computation and memory load control
-* Multi-threaded simulation for individual cell growths taking advantage of paralle computing capability
-* Built in performance profiling with pprof to provide information for simulation optimization
+- Object oriented design emphasizing individual cells
+- Cell growth model incorporating stochastic simulation for cell age, size and compound levels
+- Constant number Monte Calo method for computation and memory load control
+- Multi-threaded simulation for individual cell growths taking advantage of paralle computing capability
+- Built in performance profiling with pprof to provide information for simulation optimization
 
 Dependencies
 ----
-* C++11
-* GNU Make: http://www.gnu.org/software/make/
-* gperftools 2.3: https://github.com/gperftools/gperftools
+- C++11
+- GNU Make: http://www.gnu.org/software/make/
+- gperftools 2.3: https://github.com/gperftools/gperftools
 
 To install required packages, use the following command:
 .. code-block:: bash
@@ -34,12 +34,12 @@ git clone https://github.com/yuchenhou/gene-expression.git
 
 Usage
 ----
-* edit file `run` to specify how many threads the program shall request from the OS;
-* run the simulation and check the result
+- edit file `run` to specify how many threads the program shall request from the OS;
+- run the simulation and check the result
 .. code-block:: bash
 ./run
-* edit file `profile` to specify the profiling results file
-* profile the simulation to optimize the simulation
+- edit file `profile` to specify the profiling results file
+- profile the simulation to optimize the simulation
 .. code-block:: bash
 `./profile`
 
