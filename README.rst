@@ -5,6 +5,7 @@ gene-expression
 
 What is gene-expression?
 ----
+
 gene-expression is a C++ program for biomedical simulation for gene expression and population dynamics in a homogeneous cell colony. It uses parallel computing and stochastic simulation algorithm of gene expression. The biomedical process includs translation(DNA producing mRNA), transcription(mRNA producing protein), mRNA decay and protein decay. The cell colony is in a time invariant homogeneous ideal environment.
 
 Features
@@ -18,6 +19,7 @@ Here are just a few of the things gene-expression does:
 
 Dependencies
 ----
+
 - C++11
 - GNU Make: http://www.gnu.org/software/make/
 - gperftools 2.3: https://github.com/gperftools/gperftools
@@ -28,12 +30,14 @@ sudo apt-get install gperftools
 
 Code
 ---
+
 To get a copy of the source code, clone the git repository using the the following command:
 .. code-block:: bash
 git clone https://github.com/yuchenhou/gene-expression.git
 
 Usage
 ----
+
 - edit file `run` to specify how many threads the program shall request from the OS;
 - run the simulation and check the result
 .. code-block:: None
