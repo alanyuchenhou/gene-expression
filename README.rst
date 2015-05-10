@@ -38,13 +38,13 @@ To get a copy of the source code, clone the git repository using the the followi
 Usage
 ----
 
-- edit file `run` to specify how many threads the program shall request from the OS;
-- run the simulation and check the result::
+edit file ``run`` to specify how many threads the program shall request from the OS;
+run the simulation and check the result::
 
  ./run
 
-- edit file `profile` to specify the profiling results file
-- profile the simulation to optimize the simulation::
+edit file ``profile`` to specify the profiling results file;
+profile the simulation to optimize the simulation::
 
  ./profile
 
