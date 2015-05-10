@@ -24,10 +24,9 @@ Dependencies
 - GNU Make: http://www.gnu.org/software/make/
 - gperftools 2.3: https://github.com/gperftools/gperftools
 
-To install required packages, use the following command:
+To install required packages, use the following command::
 
-.. code-block:: none
-sudo apt-get install gperftools
+ sudo apt-get install gperftools
 
 Code
 ----
