@@ -23,6 +23,7 @@ Dependencies
 ----
 
 The following packages are required:
+
 - C++11
 - GNU Make: http://www.gnu.org/software/make/
 - gperftools: https://github.com/gperftools/gperftools
@@ -33,12 +34,14 @@ To install required packages, use the following command::
 
 Code
 ----
+
 To get a copy of the source code, clone the git repository using the the following command::
 
  git clone https://github.com/yuchenhou/gene-expression.git
 
 Usage
 ----
+
 Edit file ``run`` to specify how many threads the program shall request from the OS.
 
 Run the simulation and check the result::
@@ -56,4 +59,5 @@ Authors
 
 Background
 ----
+
 In a cell colony, the population(number) of the cells changes with time, due to cell divisions and deaths. This phenomenon is called population dynamics. On the other hand, the chemical reactions in translation, transcription and compounds decay processes result in related compounds level changes with time. This phenomenon is called gene expression. This program simulates all the above processes and record the population and compound levels during the whole experiments for biomedical research.
