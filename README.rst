@@ -26,14 +26,14 @@ Dependencies
 
 To install required packages, use the following command:
 
-.. code-block:: None
+.. code-block:: none
 sudo apt-get install gperftools
 
 Code
 ----
 
 To get a copy of the source code, clone the git repository using the the following command:
-.. code-block:: None
+.. code-block:: none
 
 git clone https://github.com/yuchenhou/gene-expression.git
 
@@ -43,13 +43,13 @@ Usage
 - edit file `run` to specify how many threads the program shall request from the OS;
 - run the simulation and check the result
 
-.. code-block:: None
+.. code-block:: none
 
 ./run
 - edit file `profile` to specify the profiling results file
 - profile the simulation to optimize the simulation
 
-.. code-block:: None
+.. code-block:: none
 
 `./profile`
 
