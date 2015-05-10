@@ -31,8 +31,7 @@ To install required packages, use the following command::
 Code
 ----
 
-To get a copy of the source code, clone the git repository using the the following command:
-.. code-block:: none
+To get a copy of the source code, clone the git repository using the the following command::
 
 git clone https://github.com/yuchenhou/gene-expression.git
 
@@ -40,17 +39,12 @@ Usage
 ----
 
 - edit file `run` to specify how many threads the program shall request from the OS;
-- run the simulation and check the result
-
-.. code-block:: none
-
+- run the simulation and check the result::
 ./run
+
 - edit file `profile` to specify the profiling results file
-- profile the simulation to optimize the simulation
-
-.. code-block:: none
-
-`./profile`
+- profile the simulation to optimize the simulation::
+./profile
 
 Authors
 ----
