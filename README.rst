@@ -23,7 +23,7 @@ Dependencies
 - gperftools 2.3: https://github.com/gperftools/gperftools
 
 To install required packages, use the following command:
-.. code-block:: bash
+.. code-block:: None
 sudo apt-get install gperftools
 
 Code
@@ -36,11 +36,11 @@ Usage
 ----
 - edit file `run` to specify how many threads the program shall request from the OS;
 - run the simulation and check the result
-.. code-block:: bash
+.. code-block:: None
 ./run
 - edit file `profile` to specify the profiling results file
 - profile the simulation to optimize the simulation
-.. code-block:: bash
+.. code-block:: None
 `./profile`
 
 Authors
